@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: CmdLn::Parameter</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">CmdLn::Parameter</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/cmdln_rb.html">
+                cmdln.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Describes a single command-line parameter that can be passed to a Ruby
+program, including the action to be performed (via a Proc object)
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000065">action</a>&nbsp;&nbsp;
+      <a href="#M000064">new</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">Comparable</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NO_ARGUMENT</td>
+          <td>=</td>
+          <td class="context-item-value">GetoptLong::NO_ARGUMENT</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+parameter does not have an associated value, eg.
+&#8217;&#8212;version&#8217;
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OPTIONAL_ARGUMENT</td>
+          <td>=</td>
+          <td class="context-item-value">GetoptLong::OPTIONAL_ARGUMENT</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+parameter may have an associated value
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REQUIRED_ARGUMENT</td>
+          <td>=</td>
+          <td class="context-item-value">GetoptLong::REQUIRED_ARGUMENT</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+parameter must have an associated value, eg. &#8217;&#8212;file
+bob.txt&#8216;
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DEF_ACTION</td>
+          <td>=</td>
+          <td class="context-item-value">Proc.new {|opt, arg, parms| opt.value = arg}</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+default action for a parameter is simply to set its value to whatever arg
+is found for it on the command-line
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">arg_desc</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">arg_flag</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">is_required</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">long_form</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">parm_desc</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">short_form</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">value</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000064" class="method-detail">
+        <a name="M000064"></a>
+
+        <div class="method-heading">
+          <a href="Parameter.src/M000064.html" target="Code" class="method-signature"
+            onclick="popupCode('Parameter.src/M000064.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(is_required, long_form, short_form, arg_flag, arg_desc, parm_desc, proc=DEF_ACTION)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a new <a href="Parameter.html">Parameter</a> object. Some of the
+parameters are required by Ruby&#8217;s GetoptLong which does much of the
+work
+</p>
+<dl>
+<dt><em>is_required</em></dt><dd>A boolean that determines whether the parameter is required at the
+command-line
+
+</dd>
+<dt><em>long_form</em></dt><dd>The parameter&#8217;s long form, eg. &#8212;version
+
+</dd>
+<dt><em>short_form</em></dt><dd>The parameter&#8217;s short from eg. -v
+
+</dd>
+<dt><em>arg_flag</em></dt><dd>One of constants defined in the <a href="Parameter.html">Parameter</a>
+class: NO_ARGUMENT, OPTIONAL_ARGUMENT, REQUIRED_ARGUMENT
+
+</dd>
+<dt><em>arg_desc</em></dt><dd>A short string describing the parameter value&#8217;s type, eg: file
+
+</dd>
+<dt><em>parm_desc</em></dt><dd>A string describing the parameter&#8217;s purpose, eg. &quot;the target
+destination&quot;
+
+</dd>
+<dt><em>proc</em></dt><dd>The action to be performed when the parameter is encountered on the
+command-line. The default is simply to assign the value given at the
+command-line to the <a href="Parameter.html">Parameter</a> object.
+Non-default behavior can be specified via a Proc object similar to
+DEF_ACTION
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000065" class="method-detail">
+        <a name="M000065"></a>
+
+        <div class="method-heading">
+          <a href="Parameter.src/M000065.html" target="Code" class="method-signature"
+            onclick="popupCode('Parameter.src/M000065.html');return false;">
+          <span class="method-name">action</span><span class="method-args">(opt, arg, parms)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Called by an instance of <a href="Parameters.html">Parameters</a> to
+perform the parameter&#8217;s specified action when it is encountered on
+the command-line
+</p>
+<dl>
+<dt><em>opt</em></dt><dd>the option string given at the command-line
+
+</dd>
+<dt><em>arg</em></dt><dd>the option&#8217;s value string
+
+</dd>
+<dt><em>parms</em></dt><dd>the <a href="Parameters.html">Parameters</a> object
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

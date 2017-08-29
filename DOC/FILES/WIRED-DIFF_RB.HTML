@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: wired-diff.rb</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>wired-diff.rb</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>wired-diff.rb
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Apr 28 16:23:00 EDT 2006</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2>Synopsis</h2>
+<p>
+Classes to enable the differencing of Windows Registry files in ASCII
+format and output the results in an XML-based format
+</p>
+<h2>Usage</h2>
+<p>
+Example:
+</p>
+<pre>
+ require 'wired-diff'
+ include Wired::Diff
+ ...
+ meta = WinRegDiffMetadata.new(baseline.value, delta.value, app_name.value, nsrl.value, action.value)
+ ...
+ diff = WinRegDiff.new(fp_baseline, fp_delta)
+ ...
+ doc = WinRegDiffDoc.new(meta, diff)
+ doc.write(fp_output)
+</pre>
+<h2>Author</h2>
+<p>
+Alden Dima
+</p>
+<h2>Copyright</h2>
+<p>
+This software was developed at the National Institute of Standards and
+Technology by employees of the Federal Government in the course of their
+official duties. Pursuant to title 17 Section 105 of the United States Code
+this software is not subject to copyright protection and is in the public
+domain. Reg-Diff is an experimental system. NIST assumes no responsibility
+whatsoever for its use by other parties, and makes no guarantees, expressed
+or implied, about its quality, reliability, or any other characteristic. We
+would appreciate acknowledgement if the software is used. This software can
+be redistributed and/or modified freely provided that any derivative works
+bear some notice that they are derived from it, and any modified versions
+bear some notice that they have been modified.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Wired::Diff::WinRegDiffDoc)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File wired-diff.rb, line 258</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">metadata</span>, <span class="ruby-identifier">regdiff</span>)
+        <span class="ruby-ivar">@metadata</span> = <span class="ruby-identifier">metadata</span>
+        <span class="ruby-ivar">@key_add</span> = <span class="ruby-identifier">regdiff</span>.<span class="ruby-identifier">key_add</span>
+        <span class="ruby-ivar">@key_del</span> = <span class="ruby-identifier">regdiff</span>.<span class="ruby-identifier">key_del</span>
+        <span class="ruby-ivar">@val_add</span> = <span class="ruby-identifier">regdiff</span>.<span class="ruby-identifier">val_add</span>
+        <span class="ruby-ivar">@val_del</span> = <span class="ruby-identifier">regdiff</span>.<span class="ruby-identifier">val_del</span>
+        <span class="ruby-ivar">@val_mod</span> = <span class="ruby-identifier">regdiff</span>.<span class="ruby-identifier">val_mod</span>
+
+        <span class="ruby-ivar">@doc</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">decl</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XMLDecl</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">UTF_8</span>, <span class="ruby-keyword kw">true</span>)
+        <span class="ruby-ivar">@doc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">decl</span>
+        <span class="ruby-ivar">@winregdiff</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Element</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'winregdiff'</span>)
+        <span class="ruby-ivar">@doc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@winregdiff</span>
+
+        <span class="ruby-identifier">baseline</span>
+        <span class="ruby-identifier">delta</span>
+        <span class="ruby-identifier">diffnode</span>
+        <span class="ruby-identifier">items_added</span>
+        <span class="ruby-identifier">items_deleted</span>
+        <span class="ruby-identifier">items_modified</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

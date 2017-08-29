@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>process_parameters (CmdLn::Parameters)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File cmdln.rb, line 259</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">process_parameters</span>
+      <span class="ruby-comment cmt"># Build and eval code to get option list. Using this yucky approach</span>
+      <span class="ruby-comment cmt"># because GetoptLong.new expects its parameters given individually;</span>
+      <span class="ruby-comment cmt"># I can't just build an array and pass it along.</span>
+      <span class="ruby-identifier">opts</span> = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-value str">&quot;opts = GetoptLong.new(&quot;</span>
+      <span class="ruby-ivar">@parms</span>.<span class="ruby-identifier">each_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">cmd</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;@parms[#{i}].get,&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">cmd</span>.<span class="ruby-identifier">chop!</span>
+      <span class="ruby-identifier">cmd</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;)&quot;</span>
+      <span class="ruby-identifier">eval</span>(<span class="ruby-identifier">cmd</span>)
+
+      <span class="ruby-comment cmt"># Process each option</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">opt</span>, <span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">parm</span> = <span class="ruby-identifier">get_parm_named</span>(<span class="ruby-identifier">opt</span>)
+          <span class="ruby-identifier">parm</span>.<span class="ruby-identifier">action</span>(<span class="ruby-identifier">parm</span>, <span class="ruby-identifier">arg</span>, <span class="ruby-keyword kw">self</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">UsageError</span>
+        <span class="ruby-identifier">usage_error</span>
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">printf</span>(<span class="ruby-value str">&quot;Error: %s&quot;</span>, <span class="ruby-identifier">e</span>)
+        <span class="ruby-identifier">usage_error</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># Look for missing required command-line parameters</span>
+      <span class="ruby-identifier">missing</span> = <span class="ruby-keyword kw">false</span>
+      <span class="ruby-ivar">@parms</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">parm</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">parm</span>.<span class="ruby-identifier">is_required</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">parm</span>.<span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">printf</span>(<span class="ruby-value str">&quot;Error: %s is a required parameter\n&quot;</span>, <span class="ruby-identifier">parm</span>.<span class="ruby-identifier">long_form</span>)
+          <span class="ruby-identifier">missing</span> = <span class="ruby-keyword kw">true</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">usage_error</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">missing</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

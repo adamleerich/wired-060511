@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Wired::Diff::WinRegDiff)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File wired-diff.rb, line 129</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">fp_b</span>, <span class="ruby-identifier">fp_d</span>)
+        <span class="ruby-identifier">keys_b</span>, <span class="ruby-identifier">values_b</span>, <span class="ruby-ivar">@bad_baseline_values</span> = <span class="ruby-constant">WinRegDiff</span>.<span class="ruby-identifier">load_reg</span>(<span class="ruby-identifier">fp_b</span>)
+        <span class="ruby-identifier">keys_d</span>, <span class="ruby-identifier">values_d</span>, <span class="ruby-ivar">@bad_delta_values</span> = <span class="ruby-constant">WinRegDiff</span>.<span class="ruby-identifier">load_reg</span>(<span class="ruby-identifier">fp_d</span>)
+
+        <span class="ruby-comment cmt"># sort out the keys based on whether they were added or deleted</span>
+        <span class="ruby-identifier">paths</span> = (<span class="ruby-identifier">keys_b</span>.<span class="ruby-identifier">keys</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">keys_d</span>.<span class="ruby-identifier">keys</span>).<span class="ruby-identifier">uniq</span>
+        <span class="ruby-ivar">@key_add</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-ivar">@key_del</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">key_b</span> = <span class="ruby-identifier">keys_b</span>[<span class="ruby-identifier">path</span>]
+          <span class="ruby-identifier">key_d</span> = <span class="ruby-identifier">keys_d</span>[<span class="ruby-identifier">path</span>]
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">key_b</span>.<span class="ruby-identifier">nil?</span>
+            <span class="ruby-ivar">@key_add</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">key_d</span>)
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">key_d</span>.<span class="ruby-identifier">nil?</span>
+            <span class="ruby-ivar">@key_del</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">key_b</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># sort out values based on whether they were added, deleted, or modified</span>
+        <span class="ruby-identifier">paths</span> = (<span class="ruby-identifier">values_b</span>.<span class="ruby-identifier">keys</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">values_d</span>.<span class="ruby-identifier">keys</span>).<span class="ruby-identifier">uniq</span>
+        <span class="ruby-ivar">@val_add</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-ivar">@val_del</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-ivar">@val_mod</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">value_b</span> = <span class="ruby-identifier">values_b</span>[<span class="ruby-identifier">path</span>]
+          <span class="ruby-identifier">value_d</span> = <span class="ruby-identifier">values_d</span>[<span class="ruby-identifier">path</span>]
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value_b</span>.<span class="ruby-identifier">nil?</span>
+            <span class="ruby-ivar">@val_add</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">value_d</span>)
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">value_d</span>.<span class="ruby-identifier">nil?</span>
+            <span class="ruby-ivar">@val_del</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">value_b</span>)
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">value_b</span>.<span class="ruby-identifier">data</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">value_d</span>.<span class="ruby-identifier">data</span>
+            <span class="ruby-ivar">@val_mod</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">value_d</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Wired::Dataset::Baseline)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File wired-dataset.rb, line 82</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span> (<span class="ruby-identifier">file_name</span>, <span class="ruby-identifier">doc</span>)
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;baseline/file/name&quot;</span>].<span class="ruby-identifier">text</span>
+          <span class="ruby-ivar">@sha</span>  = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;baseline/file/sha&quot;</span>].<span class="ruby-identifier">text</span>
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-constant">Wired</span><span class="ruby-operator">::</span><span class="ruby-constant">Dataset</span><span class="ruby-operator">::</span><span class="ruby-identifier">format_error</span>(<span class="ruby-identifier">file_name</span>, <span class="ruby-keyword kw">__LINE__</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
